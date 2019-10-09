@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+            <title>
+                {% block title %}
+                {{ title }}
+                {% endblock title %}
+            </title>
+            {% block style %}
+            {% endblock style %}
+
+    </head>
+    <body>
+        <a href="/login">login</a>
+        <a href="/signup">sign up</a>
+        {% block content %}
+        {% endblock content %}
+
+
+        {% block script %}
+        {% endblock script %}
+    </body>
+</html>
