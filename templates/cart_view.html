@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ul>
+        {% for item in cart %}
+            {% if item._id != "properties" %}
+            <p>
+                ${{ item.cost }}: <a href="{{ item._id }}">{{ item.title }}</a>
+            </p><form method="POST" action="/songs/cart/update_quantity/{{ item._id }}">
+                <input type="number" name="quantity">
+            </form>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <p>
+        Total: ${{ cart_total }}
+    </p>
+{% endblock content %}

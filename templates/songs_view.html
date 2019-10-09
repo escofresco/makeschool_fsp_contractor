@@ -1,0 +1,18 @@
+{# templates/playlists_view.html #}
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {% for song in songs %}
+        <div class='col-md-3'>
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title"><a href='/songs/{{ song._id }}'>{{song.title}}</a></h5>
+                <h6 class="card-subtitle mb-2 text-muted">by: {{song.artist}}</h6>
+
+                <a href="/songs/add_to_cart/{{ song._id }}">Add to cart</a>
+              </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
