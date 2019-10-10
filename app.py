@@ -113,4 +113,5 @@ if __name__ == "__main__":
         "total_count":0,
         "total_cost":0.0,
     })
+    
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
