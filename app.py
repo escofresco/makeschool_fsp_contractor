@@ -10,7 +10,8 @@ app = Flask(__name__)
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Songs')
 client = MongoClient(host=f'{host}?retryWrites=false') #MongoClient()
 # client = MongoClient()
-songs_db = client.Songs #playlister_db = client.get_default_database()
+#songs_db = client.Songs
+songs_db = client.get_default_database()
 
 songs_collection = songs_db.songs
 cart_collection = songs_db.cart
