@@ -18,8 +18,8 @@ cart_collection = songs_db.cart
 
 description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae ultrices enim. Vestibulum semper arcu ac turpis tincidunt sagittis. Maecenas et auctor sapien, id lobortis erat. Ut sit amet elementum lectus. Cras in urna vel enim lacinia sagittis. Vivamus id tincidunt diam, nec scelerisque lacus."
 
-# songs_collection.delete_many({})
-# cart_collection.delete_many({})
+songs_collection.delete_many({})
+cart_collection.delete_many({})
 songs_collection.insert_one({
     "title": "Birds of a feather flock together",
     "artist": "Jack Sparrow",
