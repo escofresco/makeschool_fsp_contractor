@@ -6,11 +6,21 @@
             {% if item._id != "properties" %}
             <p>
                 ${{ item.cost }}: <a href="{{ item._id }}">{{ item.title }}</a><br>
-                qty: {{ item.count }}
+
+                <form method="POST" action="cart/update_quantity/{{ item._id }}">
+                    <p>
+                        qty:
+                        <select name="quantity" onchange="this.form.submit()">
+                            {% for i in range(9) %}
+                                <option value="{{ i }}" {% if item.count == i %}selected{% endif %}>
+                                    {{ i }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </p>
+                </form>
             </p>
-            <form method="POST" action="cart/update_quantity/{{ item._id }}">
-                <input type="number" name="quantity">
-            </form>
+
             <form method="POST" action="cart/delete_item/{{ item._id }}">
                 <button type="submit">delete</button>
             </form>
