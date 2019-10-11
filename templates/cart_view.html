@@ -5,9 +5,14 @@
         {% for item in cart %}
             {% if item._id != "properties" %}
             <p>
-                ${{ item.cost }}: <a href="{{ item._id }}">{{ item.title }}</a>
-            </p><form method="POST" action="/songs/cart/update_quantity/{{ item._id }}">
+                ${{ item.cost }}: <a href="{{ item._id }}">{{ item.title }}</a><br>
+                qty: {{ item.count }}
+            </p>
+            <form method="POST" action="cart/update_quantity/{{ item._id }}">
                 <input type="number" name="quantity">
+            </form>
+            <form method="POST" action="cart/delete_item/{{ item._id }}">
+                <button type="submit">delete</button>
             </form>
             {% endif %}
         {% endfor %}
