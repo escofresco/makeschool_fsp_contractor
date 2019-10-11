@@ -18,25 +18,6 @@ cart_collection = songs_db.cart
 
 description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae ultrices enim. Vestibulum semper arcu ac turpis tincidunt sagittis. Maecenas et auctor sapien, id lobortis erat. Ut sit amet elementum lectus. Cras in urna vel enim lacinia sagittis. Vivamus id tincidunt diam, nec scelerisque lacus."
 
-songs_collection.delete_many({})
-cart_collection.delete_many({})
-songs_collection.insert_one({
-    "title": "Birds of a feather flock together",
-    "artist": "Jack Sparrow",
-    "price": 800,
-    "description": description,
-})
-songs_collection.insert_one({
-    "title": "Go Fish",
-    "artist": "Fisherman",
-    "price": 19000,
-    "description": description,
-})
-cart_collection.insert_one({
-    "_id": "properties",
-    "total_count": 0,
-    "total_cost": 0.0,
-})
 
 def cart_count():
     return cart_collection.find_one({"_id": "properties"})["total_count"]
@@ -50,17 +31,12 @@ def change_item_count_for_cart(item_id, target_quantity):
     new_item_cost = target_quantity * item_price
     delta_item_count = target_quantity - item["count"]
     delta_item_cost = delta_item_count * item_price
-    print("old properties: ")
-    print(cart_collection.find_one({"_id":"properties"}))
-    print(item)
     cart_collection.update_one({"_id": "properties"}, {
         "$inc": {
             "total_cost": item_price * (target_quantity - item["count"]),
             "total_count": target_quantity - item["count"]
         }
     })
-    print("new properties: ")
-    print(cart_collection.find_one({"_id":"properties"}))
     if not target_quantity:
         # target_quantity is being set to 0, so delete the item from cart_collection
         cart_collection.delete_one({"_id": ObjectId(item_id)})
